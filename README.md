@@ -1,12 +1,18 @@
-# Claude Code Commands
+# Claude Commands
 
-Collection of useful slash commands for Claude Code to enhance productivity and session management.
+A curated collection of slash commands, task definitions, and agent configurations for Claude Code to boost productivity and standardize workflows.
 
 ## Overview
 
-This repository provides reusable Claude Code slash commands that can be installed into any project. The commands help automate common workflows and improve session continuity.
+Claude Code evolves rapidly with new features like slash commands, task agents, and skill integrations. This repository serves as a centralized library of useful commands, task definitions, and agent configurations that can be installed into any project.
 
-## Commands
+**Purpose:**
+- Collect and share proven Claude Code patterns
+- Standardize workflows across projects
+- Track useful commands as Claude Code evolves
+- Provide ready-to-use automation for common tasks
+
+## Available Commands
 
 ### /checkpoint
 
@@ -26,6 +32,21 @@ Automatically generates comprehensive session checkpoint files for seamless hand
 - When handing off work to another developer
 - When you need to resume work after a break
 
+**Status:** Production-ready
+
+---
+
+### Future Commands
+
+The following commands are planned for future releases:
+
+- `/review` - Generate code review checklists based on project patterns
+- `/test` - Analyze test coverage and identify gaps
+- `/deploy` - Pre-deployment readiness checker
+- `/audit` - Security audit command for common vulnerabilities
+- `/docs` - Auto-generate documentation from code
+- `/refactor` - Refactoring suggestions and safety checks
+
 ## Installation
 
 ### Quick Install
@@ -44,7 +65,7 @@ cd claude-commands
    cp commands/*.md /path/to/your/project/.claude/commands/
    ```
 
-2. **Create sessions directory:**
+2. **Create sessions directory** (for /checkpoint command):
    ```bash
    mkdir -p /path/to/your/project/sessions
    ```
@@ -55,7 +76,7 @@ cd claude-commands
    echo "sessions/" >> /path/to/your/project/.gitignore
    ```
 
-4. **Update GitHub Actions (if applicable):**
+4. **Update GitHub Actions** (if applicable):
 
    Add `sessions/**` to your workflow's `paths-ignore` section:
 
@@ -76,22 +97,17 @@ cd claude-commands
 
 ### Creating a Checkpoint
 
-At the end of your session, simply run:
+At the end of your session:
 
 ```
 /checkpoint
 ```
 
-Claude Code will automatically:
-1. Gather all git information
-2. Summarize your session work
-3. Document files changed with line numbers
-4. Capture current state and next steps
-5. Save checkpoint to `./sessions/claude-checkpoint-YYYYMMDD-HHMMSS.md`
+Claude Code will automatically create `./sessions/claude-checkpoint-YYYYMMDD-HHMMSS.md` with complete session context.
 
 ### Resuming from a Checkpoint
 
-In your next session, provide the checkpoint file:
+In your next session:
 
 ```
 I'm resuming from a previous session. Please read ./sessions/claude-checkpoint-YYYYMMDD-HHMMSS.md
@@ -102,50 +118,41 @@ Claude Code will read the checkpoint and understand exactly where you left off.
 ## Requirements
 
 - Claude Code CLI (claude.ai/code)
-- Git repository
+- Git repository (for commands that use git integration)
 - Bash shell (for installation script)
 
 ## Project Structure
 
 ```
 claude-commands/
-├── commands/
-│   └── checkpoint.md       # Checkpoint slash command
-├── install.sh              # Automated installer script
-├── README.md               # This file
-└── LICENSE                 # Apache-2.0 license
+├── commands/                   # Slash command definitions
+│   └── checkpoint.md          # Session checkpoint command
+├── tasks/                      # Task definitions (future)
+├── agents/                     # Agent configurations (future)
+├── install.sh                  # Automated installer
+├── README.md                   # This file
+└── LICENSE                     # Apache-2.0 license
 ```
 
-## Benefits
+## Repository Philosophy
 
-### Before Claude Commands
-- Lost context between sessions
-- Spent time re-learning previous work
-- Made assumptions about past decisions
-- Manual checkpoint files were tedious
+Claude Code is evolving rapidly with new features and capabilities. This repository aims to:
 
-### After Claude Commands
-- Instant context restoration
-- No time wasted re-learning
-- Clear understanding of previous decisions
-- Fully automated checkpoint creation
-
-## Configuration
-
-The checkpoint command stores files in `./sessions/` by default. This directory is:
-- Ignored by git (not committed)
-- Ignored by GitHub Actions (no deployment triggers)
-- Local-only for your reference
-
-You can customize the checkpoint template by editing `.claude/commands/checkpoint.md` in your project.
+1. **Track Useful Patterns**: As Claude Code introduces new features (slash commands, task agents, skills), we collect and share proven patterns
+2. **Reduce Duplication**: Common workflows shouldn't be reinvented for each project
+3. **Enable Quick Setup**: New projects can install battle-tested commands instantly
+4. **Community Knowledge**: Learn from what works across different teams and projects
 
 ## Contributing
 
-Contributions are welcome! To add a new command:
+Contributions are welcome! To add a new command, task, or agent:
 
 1. Fork this repository
-2. Create a new command file in `commands/your-command.md`
-3. Update this README with command documentation
+2. Create a new file in the appropriate directory:
+   - `commands/` for slash commands
+   - `tasks/` for task definitions
+   - `agents/` for agent configurations
+3. Update this README with documentation
 4. Submit a pull request
 
 ### Command Guidelines
@@ -155,6 +162,29 @@ Contributions are welcome! To add a new command:
 - Include examples in documentation
 - Test the command in a real project
 - Follow existing command structure
+- Document any dependencies or requirements
+
+### Quality Standards
+
+- No emojis or unnecessary symbols
+- Clear, professional documentation
+- Tested in production environments
+- Follows Claude Code best practices
+
+## Benefits
+
+### Before Claude Commands
+- Manual checkpoint creation (tedious and error-prone)
+- Reinventing workflows for each project
+- Lost context between sessions
+- No standardization across teams
+
+### After Claude Commands
+- One command installs all productivity tools
+- Proven patterns from real projects
+- Instant context restoration
+- Team-wide standardization
+- Community-contributed improvements
 
 ## License
 
@@ -173,21 +203,35 @@ For issues, questions, or suggestions:
 - Added /checkpoint command for session management
 - Automated installer script
 - Comprehensive documentation
+- GitHub Actions for Discord notifications
 
 ## Roadmap
 
-Future commands under consideration:
-- /review - Code review checklist generator
-- /test - Test coverage analyzer and gap identifier
-- /deploy - Deployment readiness checker
-- /audit - Security audit command
-- /docs - Documentation generator
+### Short Term (Q1 2025)
+- Add /review command for code review checklists
+- Add /test command for coverage analysis
+- Create task definitions library
+- Document agent configuration patterns
+
+### Medium Term (Q2 2025)
+- Add /deploy readiness checker
+- Add /audit security scanner
+- Create agent marketplace
+- Integration examples with popular frameworks
+
+### Long Term (Future)
+- Visual command builder
+- Command dependency management
+- Project-specific command customization
+- Team command sharing platform
 
 ## Related Projects
 
 - Claude Code: https://claude.com/claude-code
 - Claude Code Documentation: https://docs.claude.com/en/docs/claude-code
 
-## Authors
+## About
 
-Created by the Wasmagents team for the Claude Code community.
+Created by the Wasmagents team to standardize Claude Code workflows and share productivity tools across projects.
+
+This repository grows with Claude Code as new features are released. Check back regularly for new commands and patterns.
